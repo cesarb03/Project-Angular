@@ -1,24 +1,43 @@
 <h1 mat-dialog-title>Agregar estudiante</h1>
 <div mat-dialog-content>
-    <!-- <form class="flex flex-column" [formGroup]="studentForm"> -->
-        <form>
-        <div class="mb-2">
+    <form class="flex flex-column" [formGroup]="studentForm">
+        <div class="mb-3">
             <mat-form-field appearance="fill">
                 <mat-label>Nombre</mat-label>
-                <!-- <input [formControl]="firstNameControl" matInput placeholder="Placeholder"> -->
+                <input [formControl]="firstNameControl" matInput placeholder="Placeholder">
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint *ngIf="firstNameControl.errors">Hint</mat-hint>
+                <mat-error *ngIf="studentForm.get('firstName')?.errors?.['required']">El campo Nombre es
+                    requerido</mat-error>
+                <mat-error *ngIf="studentForm.get('firstName')?.errors?.['minlength']">El campo Nombre debe tener al
+                    menos 3 caracteres</mat-error>
             </mat-form-field>
         </div>
-        <mat-form-field appearance="fill">
-            <mat-label>Apellido</mat-label>
-            <!-- <input [formControl]="lastNameControl" matInput placeholder="Placeholder"> -->
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-            <mat-hint>Hint</mat-hint>
-        </mat-form-field>
+        <div class="mb-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Apellido</mat-label>
+                <input [formControl]="lastNameControl" matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-error *ngIf="studentForm.get('lastName')?.errors?.['required']">El campo Apellido es
+                    requerido</mat-error>
+                <mat-error *ngIf="studentForm.get('lastName')?.errors?.['minlength']">El campo Apellido debe tener al
+                    menos 3 caracteres</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="mb-3">
+            <mat-form-field appearance="fill">
+                <mat-label>E-Mail</mat-label>
+                <input [formControl]="emailControl" matInput placeholder="E-Mail">
+                <mat-error *ngIf="studentForm.get('email')?.errors?.['required']">El campo E-Mail es
+                    requerido</mat-error>
+                <mat-error *ngIf="studentForm.get('email')?.errors?.['email']">El campo E-Mail tiene un formato
+                    invalido</mat-error>
+            </mat-form-field>
+        </div>
+        <mat-slide-toggle color="primary" [formControl]="isActiveControl">Activo</mat-slide-toggle>
     </form>
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="close()">Cancelar</button>
-    <button mat-button [mat-dialog-close]="studentForm.value" cdkFocusInitial>Guardar</button>
+<div mat-dialog-actions class="ps-5">
+    <button mat-flat-button color="primary" (click)="close()">Cancelar</button>
+    <button mat-flat-button color="primary" [mat-dialog-close]="studentForm.value"
+        [disabled]="studentForm.invalid">Guardar</button>
 </div>
