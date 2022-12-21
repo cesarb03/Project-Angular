@@ -18,7 +18,7 @@ export class StudentsPageComponent {
   ]
 
   // Columnas que se van a mostrar en la tabla
-  displayedColumns = ['id', 'details', 'firstName', 'lastName', 'email', 'isActive', 'edit', 'delete'];
+  displayedColumns = ['id', 'firstName', 'lastName', 'email', 'isActive', 'edit', 'delete'];
 
   constructor(private readonly dialogService: MatDialog) {}
 
