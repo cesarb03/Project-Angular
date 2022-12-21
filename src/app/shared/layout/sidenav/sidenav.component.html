@@ -14,12 +14,16 @@
 
 
 <mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened" mode="side">
+    <mat-sidenav [(opened)]="opened" mode="over">
         <mat-list>
             <mat-list-item><a class="text-light text-decoration-none">HOME</a></mat-list-item>
-            <mat-list-item><a class="text-light text-decoration-none">Item1</a></mat-list-item>
-            <mat-list-item><a class="text-light text-decoration-none">Item2</a></mat-list-item>
-            <mat-list-item><a class="text-light text-decoration-none">Item3</a></mat-list-item>
+            <mat-list-item><a class="text-light text-decoration-none">Alumnos</a></mat-list-item>
+            <mat-list-item><a class="text-light text-decoration-none">Clases</a></mat-list-item>
+            <mat-list-item><a class="text-light text-decoration-none">Cursos</a></mat-list-item>
         </mat-list>
     </mat-sidenav>
+    <mat-sidenav-content>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+
 </mat-sidenav-container>
