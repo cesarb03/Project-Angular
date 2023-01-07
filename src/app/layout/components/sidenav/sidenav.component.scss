@@ -1,5 +1,7 @@
 mat-sidenav-container{
     height: calc(205vh - 115vh);
+    flex: 1;
+
 }
 
 mat-sidenav{
@@ -15,3 +17,4 @@ mat-sidenav{
     padding: 1rem;
 
   }
+
