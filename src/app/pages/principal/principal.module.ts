@@ -14,6 +14,6 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     PrincipalRoutingModule,
     RouterModule
-  ],
+  ]
 })
 export class PrincipalModule { }

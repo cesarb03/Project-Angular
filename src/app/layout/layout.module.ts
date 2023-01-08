@@ -4,6 +4,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MyMaterialModule } from '../shared/modules/my-material.module';
 import { LayoutComponent } from './layout.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -15,7 +16,8 @@ import { LayoutComponent } from './layout.component';
   ],
   imports: [
     CommonModule,
-    MyMaterialModule
+    MyMaterialModule,
+    RouterModule
   ],
   exports: [
     LayoutComponent

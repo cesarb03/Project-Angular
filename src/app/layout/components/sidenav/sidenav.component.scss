@@ -1,7 +1,6 @@
 mat-sidenav-container{
-    height: calc(205vh - 115vh);
+    height: calc(205vh - 105vh);
     flex: 1;
-
 }
 
 mat-sidenav{
@@ -13,8 +12,6 @@ mat-sidenav{
     flex: 1 1 auto;
   }
 
-// mat-sidenav-content{
-//   padding: 1rem;
-
-// }
-
+  button{
+    margin-left: 15px;
+  }
