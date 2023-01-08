@@ -1,12 +1,12 @@
-  <app-toolbar class="positions">  </app-toolbar>
 
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav-content>
-    <button (click)="opened=!opened" mat-icon-button class="example-icon button-header" aria-label="Example icon-button with menu icon">
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <app-toolbar (toggleSidebar)="opened = !opened" class="positions"></app-toolbar>
+    <!-- <button (click)="opened=!opened" mat-icon-button class="example-icon button-header" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
-    </button>
+    </button>dfsfdsd -->
   </mat-sidenav-content>
-  
+
       <mat-sidenav [(opened)]="opened" mode="over">
           <mat-list>
               <a mat-list-item routerLink="" class="text-light text-decoration-none"><span class="text-light text-decoration-none">HOME</span></a>
@@ -18,5 +18,4 @@
       <mat-sidenav-content>
         <ng-content></ng-content>
       </mat-sidenav-content>
-  
-  </mat-sidenav-container>
+</mat-sidenav-container>
