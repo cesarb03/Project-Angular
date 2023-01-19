@@ -1,21 +1,23 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container ">
   <mat-sidenav-content>
     <app-toolbar (toggleSidebar)="opened = !opened" class="positions"></app-toolbar>
+    <div class="main-content">
+        <div class="router-outlet-container">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
   </mat-sidenav-content>
 
-  <mat-sidenav [(opened)]="opened" mode="over">
+  <mat-sidenav [(opened)]="opened" mode="side">
     <mat-list>
       <button (click)="opened = !opened" mat-icon-button class="example-icon button-header"
         aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
       </button>
-      <a mat-list-item routerLink=""><span class="text-light text-decoration-none">HOME</span></a>
+      <a mat-list-item routerLink="home"><span class="text-light text-decoration-none">HOME</span></a>
       <a mat-list-item routerLink="/students"><span class="text-light text-decoration-none">Alumnos</span></a>
       <a mat-list-item routerLink=""><span class="text-light text-decoration-none">Clases</span></a>
       <a mat-list-item routerLink=""><span class="text-light text-decoration-none">Cursos</span></a>
     </mat-list>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <ng-content></ng-content>
-  </mat-sidenav-content>
 </mat-sidenav-container>

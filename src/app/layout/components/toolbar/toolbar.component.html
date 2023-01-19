@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="flex align-items-center justify-content-between" color="primary">
   <button (click)="toggleSidebar.emit()" mat-icon-button class="example-icon button-header" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
@@ -10,4 +10,11 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
       <mat-icon>person</mat-icon>
     </button>
+    <!-- <b style="cursor: pointer;" *ngIf="user;" routerLink="">
+      AUTENTICADO: {{ user.fullName }}
+    </b> -->
+    <!-- <button (click)="authService.logOut()" color="warn" mat-flat-button>Cerrar sesión</button> -->
+    <!-- <ng-template #templateName>
+      <button routerLink="" mat-flat-button color="primary">Iniciar sesión</button>
+    </ng-template> -->
   </mat-toolbar>

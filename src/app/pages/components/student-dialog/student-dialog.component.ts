@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 // import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Student } from 'src/app/interface/students.interface';
+import { Student } from 'src/app/core/interface/students.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -43,8 +43,10 @@ export class StudentDialogComponent {
   }
 
   studentValid() {
-    return (this.studentForm.get('firstName')?.valid && 
-    this.studentForm.get('lastName')?.valid && 
-    this.studentForm.get('email')?.valid)
+    return (
+      this.studentForm.get('firstName')?.valid &&
+      this.studentForm.get('lastName')?.valid &&
+      this.studentForm.get('email')?.valid
+    );
   }
 }

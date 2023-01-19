@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
+import { AuthModule } from './auth/auth.module';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,31 +11,25 @@ const routes: Routes = [
     component: LayoutComponent,
       children: [
       {
-        path: '',
+        path: 'home',
         component: PrincipalComponent,
-        data: {
-          nombre: 'Bienvenido'
-        }
       },
       {
         path: 'students',
+        canActivate: [AuthGuard],
+
         loadChildren: () => import('./pages/students-page/students-page.module').then(m => m.StudentsPageModule),
-        data: {
-          nombre: 'Students'
-        }
-      },
-      // {
-      //   path: 'proveedores',
-      //   loadChildren: () => import('./proveedores/proveedores.module').then(m => m.ProveedoresModule),
-      //   data: {
-      //     nombre: 'Proveedores'
-      //   }
-      // }
+      }, 
+      {
+        path: '',
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+      }, 
+      {
+        path: '**',
+        redirectTo: 'auth'
+      }
     ]
   },
-
-
-
 ];
 
 @NgModule({

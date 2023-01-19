@@ -4,7 +4,7 @@ mat-sidenav-container{
 }
 
 mat-sidenav{
-  width: 200px;
+  width: 180px;
   background-color: #3f51b5;
 }
 
@@ -15,3 +15,17 @@ mat-sidenav{
   button{
     margin-left: 15px;
   }
+
+
+.main-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.router-outlet-container {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}

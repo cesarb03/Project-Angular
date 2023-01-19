@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+
 
 
 
@@ -29,7 +31,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatInputModule,
     MatTableModule,
     ReactiveFormsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatCardModule,
+
   ],
 })
 export class MyMaterialModule {}
