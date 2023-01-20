@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnDestroy {
     }).subscribe((user) => {
       this.loading = false
       if (user) {
-        this.router.navigate(['home', 'students'])
+        this.router.navigate(['home'])
       }
     })
   }
