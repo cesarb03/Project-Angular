@@ -2,8 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, catchError, map, mergeMap, of, tap } from 'rxjs';
-import { SessionService } from 'src/app/core/services/session.service';
-import { LoginSuccessful, SingleUserResponse } from 'src/app/core/interface/reqres.interface';
+import { SessionService } from 'src/app/core/services/session/session.service';
+import {
+  LoginSuccessful,
+  SingleUserResponse,
+} from 'src/app/core/interface/reqres.interface';
 import { User } from 'src/app/core/models/user.model';
 
 @Injectable({
