@@ -13,8 +13,8 @@ import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
-
-
+import {MatMenuModule} from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import { MatCardModule } from '@angular/material/card';
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatCardModule,
-
+    MatMenuModule,
+    MatSelectModule
   ],
 })
 export class MyMaterialModule {}

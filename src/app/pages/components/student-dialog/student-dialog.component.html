@@ -1,43 +1,44 @@
 <h1 mat-dialog-title>Agregar estudiante</h1>
 <div mat-dialog-content>
-    <form class="flex flex-column" [formGroup]="studentForm">
+    <form class="flex flex-column" [formGroup]="alumnosFormulario" (ngSubmit)="guardarAlumno()">
         <div class="mb-3">
             <mat-form-field appearance="fill">
                 <mat-label>Nombre</mat-label>
-                <input [formControl]="firstNameControl" matInput placeholder="Placeholder">
+                <input formControlName="firstName" matInput placeholder="Nombre">
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-error *ngIf="studentForm.get('firstName')?.errors?.['required']">El campo Nombre es
-                    requerido</mat-error>
-                <mat-error *ngIf="studentForm.get('firstName')?.errors?.['minlength']">El campo Nombre debe tener al
+                <mat-error *ngIf="alumnosFormulario.get('firstName')?.errors?.['required'] && alumnosFormulario.get('firstName')?.touched">
+                    Este campo es requerido</mat-error>
+                <mat-error *ngIf="alumnosFormulario.get('firstName')?.errors?.['minLength'] && alumnosFormulario.get('firstName')?.touched">El campo Nombre debe tener al
                     menos 3 caracteres</mat-error>
             </mat-form-field>
         </div>
         <div class="mb-3">
             <mat-form-field appearance="fill">
                 <mat-label>Apellido</mat-label>
-                <input [formControl]="lastNameControl" matInput placeholder="Placeholder">
+                <input formControlName="lastName" matInput placeholder="Apellido">
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-error *ngIf="studentForm.get('lastName')?.errors?.['required']">El campo Apellido es
+                <mat-error *ngIf="alumnosFormulario.get('lastName')?.errors?.['required'] && alumnosFormulario.get('lastName')?.touched">El campo Apellido es
                     requerido</mat-error>
-                <mat-error *ngIf="studentForm.get('lastName')?.errors?.['minlength']">El campo Apellido debe tener al
+                <mat-error *ngIf="alumnosFormulario.get('lastName')?.errors?.['minLength'] && alumnosFormulario.get('lastName')?.touched">El campo Apellido debe tener al
                     menos 3 caracteres</mat-error>
             </mat-form-field>
         </div>
         <div class="mb-3">
             <mat-form-field appearance="fill">
                 <mat-label>E-Mail</mat-label>
-                <input [formControl]="emailControl" matInput placeholder="E-Mail">
-                <mat-error *ngIf="studentForm.get('email')?.errors?.['required']">El campo E-Mail es
+                <input formControlName="email" matInput placeholder="E-Mail">
+                <mat-error *ngIf="alumnosFormulario.get('email')?.errors?.['required'] && alumnosFormulario.get('email')?.touched">El campo E-Mail es
                     requerido</mat-error>
-                <mat-error *ngIf="studentForm.get('email')?.errors?.['email']">El campo E-Mail tiene un formato
+                <mat-error *ngIf="alumnosFormulario.get('email')?.errors?.['email'] && alumnosFormulario.get('email')?.touched">El campo E-Mail tiene un formato
                     invalido</mat-error>
             </mat-form-field>
         </div>
-        <mat-slide-toggle color="primary" [formControl]="isActiveControl">Activo</mat-slide-toggle>
+        <mat-slide-toggle color="primary" formControlName="isActive">Activo</mat-slide-toggle>
+
+        <div mat-dialog-actions class="ps-5">
+            <button mat-flat-button color="primary" (click)="close()">Cancelar</button>
+            <button mat-flat-button type="submit" color="primary" [mat-dialog-close]="alumnosFormulario.value"
+                [disabled]="alumnosFormulario.invalid">Guardar</button>
+        </div>
     </form>
-</div>
-<div mat-dialog-actions class="ps-5">
-    <button mat-flat-button color="primary" (click)="close()">Cancelar</button>
-    <button mat-flat-button color="primary" [mat-dialog-close]="studentForm.value"
-        [disabled]="studentForm.invalid">Guardar</button>
 </div>

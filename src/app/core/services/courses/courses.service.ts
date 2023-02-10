@@ -13,7 +13,8 @@ export interface ICoursesService {
   providedIn: 'root'
 })
 export class CoursesService implements ICoursesService {
-  private readonly baseUrl = 'https://63cadfea4f53a004202cf446.mockapi.io/api/';
+  private readonly baseUrl = 'https://63cadfea4f53a004202cf446.mockapi.io/';
+
   private courses = new BehaviorSubject<Course[]>([])
   public courses$: Observable<Course[]>;
   constructor(private httpClient: HttpClient) {
@@ -42,4 +43,10 @@ export class CoursesService implements ICoursesService {
         ),
       ).subscribe()
   }
+
+
+  getCoursesFromAPI(): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(`${this.baseUrl}api/courses`);
+  }
 }
+

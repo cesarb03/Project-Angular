@@ -10,10 +10,11 @@
 
   <mat-sidenav [(opened)]="opened" mode="side">
     <mat-list>
-      <button (click)="opened = !opened" mat-icon-button class="example-icon button-header"
+      <!-- <button (click)="opened = !opened" mat-icon-button class="example-icon button-header"
         aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
-      </button>
+      </button> -->
+      <a mat-list-item routerLink="home"><span class="text-light text-decoration-none"></span></a>
       <a mat-list-item routerLink="home"><span class="text-light text-decoration-none">HOME</span></a>
       <a mat-list-item routerLink="/students"><span class="text-light text-decoration-none">Alumnos</span></a>
       <a mat-list-item routerLink=""><span class="text-light text-decoration-none">Clases</span></a>

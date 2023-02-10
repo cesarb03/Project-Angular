@@ -1,20 +1,35 @@
-<mat-toolbar class="flex align-items-center justify-content-between" color="primary">
-  <button (click)="toggleSidebar.emit()" mat-icon-button class="example-icon button-header" aria-label="Example icon-button with menu icon">
+<mat-toolbar color="primary">
+  <button (click)="toggleSidebar.emit()" mat-icon-button class="example-icon button-header mediumPadding"
+    aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-    <span>Angular Coder</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>notifications_none</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>person</mat-icon>
-    </button>
-    <!-- <b style="cursor: pointer;" *ngIf="user;" routerLink="">
-      AUTENTICADO: {{ user.fullName }}
-    </b> -->
-    <!-- <button (click)="authService.logOut()" color="warn" mat-flat-button>Cerrar sesión</button> -->
-    <!-- <ng-template #templateName>
-      <button routerLink="" mat-flat-button color="primary">Iniciar sesión</button>
-    </ng-template> -->
-  </mat-toolbar>
+  <h1 class="d-flex align-items-center">Angular Coder</h1>
+  <span class="example-spacer"></span>
+
+  <span *ngIf="usuarioActivo">
+    <img [src]="sesion.usuarioActivo" alt="sesion.usuarioActivo.img" class="user-image mr-1 p-2" />
+    {{sesion.usuarioActivo}}
+  </span>
+
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>notifications_none</mat-icon>
+  </button>
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon"
+    aria-label="Example icon-button with share icon">
+    <mat-icon>person</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+
+    <!-- <h3 class="d-flex align-items-center" style="cursor: pointer;" *ngIf="user" routerLink="">
+      User: {{ user.first_name }}
+    </h3> -->
+ 
+    <button mat-menu-item>Prueba</button>
+    <button mat-menu-item>Prueba</button>
+    <button routerLink="" color="warn" mat-flat-button>Login</button>
+
+    <button (click)="logOut()" color="warn" mat-flat-button>Logout</button>
+
+  </mat-menu>
+
+</mat-toolbar>

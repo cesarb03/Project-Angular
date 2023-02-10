@@ -1,77 +1,42 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, catchError, map, mergeMap, of, tap } from 'rxjs';
-import { SessionService } from 'src/app/core/services/session/session.service';
-import {
-  LoginSuccessful,
-  SingleUserResponse,
-} from 'src/app/core/interface/reqres.interface';
-import { User } from 'src/app/core/models/user.model';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Sesion } from 'src/app/core/interface/sesion.interface';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  apiUrl = 'https://reqres.in/api';
 
-  constructor(
-    private readonly httpClient: HttpClient,
-    private readonly sessionService: SessionService,
-    private readonly router: Router
-  ) {}
+  sesionSubject: BehaviorSubject<Sesion>;
 
-  login(data: { email: string; password: string }): Observable<any> {
-    return this.httpClient
-      .post<LoginSuccessful>(`${this.apiUrl}/login`, data)
-      .pipe(
-        tap((data) => localStorage.setItem('token', data.token)),
-        mergeMap(() =>
-          this.httpClient.get<SingleUserResponse>(`${this.apiUrl}/users/7`)
-        ),
-        map(
-          ({ data }) =>
-            new User(
-              data.id,
-              data.email,
-              data.first_name,
-              data.last_name,
-              data.avatar
-            )
-        ),
-        tap((user) => this.sessionService.setUser(user))
-      );
+  constructor() {
+    const sesion: Sesion = {
+      sesionActiva: false,
+    };
+    this.sesionSubject = new BehaviorSubject(sesion);
   }
 
-  logOut() {
-    localStorage.removeItem('token');
-    this.sessionService.setUser(null);
-    this.router.navigate(['auth', 'login']);
+  login(usuario: string, contrasena: string, admin: boolean, id: number, nombre: string, img: string) {
+    const sesion: Sesion = {
+      sesionActiva: true,
+      usuarioActivo: {
+        id: id,
+        usuario: usuario,
+        contrasena: contrasena,
+        admin: admin,
+        nombre:nombre,
+        img:img
+      },
+    };
+    this.sesionSubject.next(sesion);
   }
 
-  verifyToken(): Observable<boolean> {
-    const lsToken = localStorage.getItem('token');
+  obtenerDatosSesion(): Observable<Sesion> {
+    return this.sesionSubject.asObservable();
+  }
 
-    return of(lsToken).pipe(
-      tap((token) => {
-        if (!token) throw new Error('Token invalido');
-      }),
-      mergeMap((token) =>
-        this.httpClient.get<SingleUserResponse>(`${this.apiUrl}/users/7`)
-      ),
-      tap(({ data }) =>
-        this.sessionService.setUser(
-          new User(
-            data.id,
-            data.email,
-            data.first_name,
-            data.last_name,
-            data.avatar
-          )
-        )
-      ),
-      map((user) => !!user),
-      catchError(() => of(false))
-    );
+  clearToken(){
+    return sessionStorage.setItem("token",'')
   }
 }

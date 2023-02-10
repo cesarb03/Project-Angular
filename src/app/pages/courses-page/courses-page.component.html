@@ -1,10 +1,24 @@
-<pre>{{ coursesService.courses$ | async | json }}</pre>
+<!-- <pre>{{ coursesService.courses$ | async | json }}</pre> -->
 
-<!-- <div class="p-20 d-flex gap-20 flex-wrap">
-    <app-producto-card
-        *ngFor="let producto of (productos$ | async)"
-        [producto]="producto"
-        (eliminar)="clickEliminar($event)"
-        (editar)="clickEditar($event)">
-    </app-producto-card>
-</div> -->
+<div class="divCard">
+    <mat-card class="example-card" *ngFor="let course of (coursesService.courses$ | async)">
+        <mat-card-header>
+              <mat-card-title>{{course.name}}</mat-card-title>
+          <mat-card-subtitle>Programación Front-End</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{course.url}}" alt="Courses url">
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button>DETALLE</button>
+          <button mat-stroked-button>EDITAR</button>
+          <button mat-stroked-button>ELIMINAR</button>
+        </mat-card-actions>
+      </mat-card>
+</div>
+

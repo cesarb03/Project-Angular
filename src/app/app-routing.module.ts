@@ -22,19 +22,20 @@ const routes: Routes = [
       }, 
       {
         path: 'courses',
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadChildren: () => import('./pages/courses-page/courses-page.module').then(m => m.CoursesPageModule),
       }, 
       {
         path: '',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
       }, 
-      {
-        path: '**',
-        redirectTo: 'auth'
-      }
+      
     ]
   },
+  {
+    path: '**',
+    redirectTo: 'auth'
+  }
 ];
 
 @NgModule({

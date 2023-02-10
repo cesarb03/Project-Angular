@@ -1,24 +1,54 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { User } from 'src/app/core/models/user.model';
-import { SessionService } from 'src/app/core/services/session/session.service';
+import { Sesion } from 'src/app/core/interface/sesion.interface';
+import { Usuario } from 'src/app/core/interface/user.interface';
+
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
 })
-export class ToolbarComponent implements OnDestroy {
+
+export class ToolbarComponent implements OnInit, OnDestroy {
   @Output() toggleSidebar = new EventEmitter();
-  public user: User | null = null;
-  private destroyed$ = new Subject();
+  
+  usuario: Usuario;
+  sesion$:Observable<Sesion>;
+  subscription: Subscription;
+  sesion: Sesion;
+  
+  public usuarioActivo: Usuario | null = null;
 
-  // constructor(private readonly sessionService: SessionService, public readonly authService: AuthService) {
 
-  // }
+  constructor( 
+    private router: Router,
+    private sesionService: AuthService
+   ) { }
+
+  ngOnInit(): void {
+    this.sesion$ = this.sesionService.obtenerDatosSesion();
+    this.subscription = this.sesion$.subscribe(
+      (sesion: Sesion) => (this.sesion = sesion));
+  }
+
+  logOut() {
+    this.sesion.sesionActiva = false;
+    this.sesion.usuarioActivo = {
+      admin: false,
+      id: -1,
+      contrasena: '',
+      usuario: '',
+      nombre:'',
+      img:'',
+    };
+    this.router.navigate(['/login']);
+  }
 
   ngOnDestroy(): void {
-    this.destroyed$.next(true);
+    this.subscription.unsubscribe();
   }
+
 }
